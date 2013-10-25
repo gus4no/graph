@@ -1,4 +1,4 @@
-class Node
+class Edge
   attr_accessor :src, :dst, :weight
 
   def initialize src, dst, weight = 1
@@ -6,4 +6,5 @@ class Node
     @dst = dst
     @weight = weight
   end
+
 end

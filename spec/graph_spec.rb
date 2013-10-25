@@ -6,12 +6,21 @@ describe Graph do
 
   describe '#initialize' do
     it 'should initializes nodes array' do
-      expect(graph.nodes).to be_kind_of(Array)
+      expect(graph.edges).to be_kind_of(Array)
     end
   end
-  describe '#add_node' do
-    it 'should add a node' do
-      expect{ graph.add_node({}) }.to change{ graph.nodes.count }.by(1)
+
+  describe '#connect' do
+    it 'should raise argument error if src not in graph nodes' do
+      expect{ graph.connect(1, 2, 1)}.to raise_error(ArgumentError)
+    end
+
+    it 'should connect two nodes' do
+      graph.push(1)
+      graph.push(2)
+      expect{ graph.connect(1,2,3) }.to change{ graph.edges.count }.by(2)
+
     end
   end
+
 end
