@@ -36,4 +36,44 @@ class Graph < Array
     end
   end
 
+  #not my code :S
+
+  def shortest_path(src, dst = nil)
+    distances = {}
+    previouses = {}
+    self.each do |node|
+      distances[node] = nil
+      previouses[node] = nil
+    end
+    distances[src] = 0
+    nodes = self.clone
+    until nodes.empty?
+      nearest_node = nodes.inject do |a, b|
+        next b unless distances[a]
+        next a unless distances[b]
+        next a if distances[a] < distances[b]
+        b
+      end
+      break unless distances[nearest_node] # Infinity
+      if dst and nearest_node == dst
+        return distances[dst]
+      end
+      neighbors = nodes.neighbors_from(nearest_node)
+      neighbors.each do |node|
+        alt = distances[nearest_node] + nodes.distance(nearest_node, node)
+        if distances[node].nil? or alt < distances[node]
+          distances[node] = alt
+          previouses[node] = nearest_node
+          # decrease-key v in Q # ???
+        end
+      end
+      nodes.delete nearest_node
+    end
+    if dst
+      return nil
+    else
+      return distances
+    end
+  end
+
 end
