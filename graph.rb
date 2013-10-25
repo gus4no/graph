@@ -13,8 +13,21 @@ class Graph < Array
     edge = Edge.new src, dst, length
     edge2 = Edge.new dst, src, length
     #this should connect both nodes with the same edge in both ways
-    @edges.push edge
-    @edges.push edge2
+    @edges << edge
+    @edges << edge2
+  end
+
+  def add_nodes nodes
+    (1..nodes).each{ |v| self << v }
+  end
+
+  def neighbors_from node
+    raise ArgumentError, "Unknown node #{node}" unless include?(node)
+    neighbors = []
+    @edges.each do |edge|
+     neighbors << edge.dst if edge.src.eql? node
+    end
+    return neighbors.uniq
   end
 
 end
