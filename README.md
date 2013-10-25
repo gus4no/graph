@@ -3,7 +3,7 @@ graph
 
 You can create a sample graph by running.
 
-Dijkstra.sample
+`Dijkstra.sample`
 
 or you can create custom graphs via IRB with the following commands
 
