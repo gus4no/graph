@@ -41,4 +41,15 @@ describe Graph do
     end
   end
 
+  describe '#distance' do
+    before do
+      graph.add_nodes(2)
+      graph.connect 1, 2, 5
+    end
+    it 'should get the distacne between two nodes' do
+      dst = graph.distance 1, 2
+      expect(dst).to eq(5)
+    end
+  end
+
 end

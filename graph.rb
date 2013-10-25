@@ -30,4 +30,10 @@ class Graph < Array
     neighbors.uniq
   end
 
+  def distance src, dst
+    @edges.each do |edge|
+      return edge.weight if edge.src.eql?(src)  && edge.dst.eql?(dst)
+    end
+  end
+
 end
