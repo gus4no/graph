@@ -27,7 +27,7 @@ class Graph < Array
     @edges.each do |edge|
      neighbors << edge.dst if edge.src.eql? node
     end
-    return neighbors.uniq
+    neighbors.uniq
   end
 
 end
